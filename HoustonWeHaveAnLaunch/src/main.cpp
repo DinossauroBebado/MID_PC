@@ -21,7 +21,8 @@ int lofi = 0;
 int prev_lofi = 0;
 int musicPlaying = 0;
 int prev_musicPlaying = 0;
-int audioPhone = 0;
+int audioFone = 0;
+int prev_audioFone = 0;
 //Variavel para o botao do encoder
 int newPos = 0;
 
@@ -32,7 +33,7 @@ void setup()
   pinMode(setPlaylist, INPUT);
   pinMode(playMusic, INPUT);
   pinMode(setAudioOut, INPUT);
-
+  prev_micMuted = digitalRead(muteAudio);
   Serial.begin(9600);
   Serial.println("Gire o encoder....");
 }
@@ -40,61 +41,71 @@ void setup()
 void loop()
 {
   //Verifica se o botao do encoder foi pressionado
-  //muta o volume geral
+  //muta o volume geral------------------
   audioMuted = digitalRead(muteAudio);
   if (audioMuted != 1)
   {
-    Serial.println("Botao pressionado");
+    Serial.println("Muda estado do volume geral");
     while (digitalRead(muteAudio) == 0)
       delay(10);
   }
-  //muta o microfone
+  //muta o microfone--------------------
   micMuted = digitalRead(muteMic);
-  if (micMuted == 1 && prev_micMuted == 0)
-  {
-    Serial.println("Microfone mutado");
-    prev_micMuted = 1;
-    while (digitalRead(muteMic) == 0)
-      delay(10);
-  }
   if (micMuted == 0 && prev_micMuted == 1)
   {
     Serial.println("Microfone desmutado");
     prev_micMuted = 0;
-    while (digitalRead(muteMic) == 0)
-      delay(10);
+    delay(10);
   }
-  // play spotify playlist
+
+  if (micMuted == 1 && prev_micMuted == 0)
+  {
+    Serial.println("Microfone mutado");
+    prev_micMuted = 1;
+    delay(10);
+  }
+
+  // play spotify playlist----------------
+  musicPlaying = digitalRead(playMusic);
+  if (musicPlaying == 1 && prev_musicPlaying == 0)
+  {
+    Serial.println("Play music");
+    prev_musicPlaying = 1;
+    delay(10);
+  }
+  if (musicPlaying == 0 && prev_musicPlaying == 1)
+  {
+    Serial.println("Stop music");
+    prev_musicPlaying = 0;
+    delay(10);
+  }
+  // choose spotify playlist-----------------
   lofi = digitalRead(setPlaylist);
   if (lofi == 1 && prev_lofi == 0)
   {
     Serial.println("Playlist: LOFI");
     prev_lofi = 1;
-    while (digitalRead(setPlaylist) == 0)
-      delay(10);
+    delay(10);
   }
   if (lofi == 0 && prev_lofi == 1)
   {
     Serial.println("Playlist: ROCK");
     prev_lofi = 0;
-    while (digitalRead(setPlaylist) == 0)
-      delay(10);
+    delay(10);
   }
-  // choose spotify playlist
-  lofi = digitalRead(setPlaylist);
-  if (lofi == 1 && prev_lofi == 0)
+  // choose audio OUTPUT----------------------
+  audioFone = digitalRead(setAudioOut);
+  if (audioFone == 1 && prev_audioFone == 0)
   {
     Serial.println("Playlist: LOFI");
-    prev_lofi = 1;
-    while (digitalRead(setPlaylist) == 0)
-      delay(10);
+    prev_audioFone = 1;
+    delay(10);
   }
-  if (lofi == 0 && prev_lofi == 1)
+  if (audioFone == 0 && prev_audioFone == 1)
   {
     Serial.println("Playlist: ROCK");
-    prev_lofi = 0;
-    while (digitalRead(setPlaylist) == 0)
-      delay(10);
+    prev_audioFone = 0;
+    delay(10);
   }
 
   //Le as informacoes do encoder
