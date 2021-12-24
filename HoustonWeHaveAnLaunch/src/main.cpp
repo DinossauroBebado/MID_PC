@@ -3,13 +3,13 @@
 #include <RotaryEncoder.h>
 #include <Arduino.h>
 //Pinos de ligacao do encoder
-#define A 2
-#define B 3
-#define muteAudio 10
-#define muteMic 9
-#define setPlaylist 8
-#define playMusic 7
-#define setAudioOut 6
+#define A 6
+#define B 4
+#define muteAudio 15
+#define muteMic 3
+#define setPlaylist 9
+#define playMusic 10
+#define setAudioOut 16
 
 RotaryEncoder encoder(A, B);
 
@@ -49,6 +49,7 @@ void loop()
     while (digitalRead(muteAudio) == 0)
       delay(10);
   }
+
   //muta o microfone--------------------
   micMuted = digitalRead(muteMic);
   if (micMuted == 0 && prev_micMuted == 1)
@@ -97,13 +98,13 @@ void loop()
   audioFone = digitalRead(setAudioOut);
   if (audioFone == 1 && prev_audioFone == 0)
   {
-    Serial.println("Playlist: LOFI");
+    Serial.println("Output:Fone");
     prev_audioFone = 1;
     delay(10);
   }
   if (audioFone == 0 && prev_audioFone == 1)
   {
-    Serial.println("Playlist: ROCK");
+    Serial.println("Output:Tv");
     prev_audioFone = 0;
     delay(10);
   }
