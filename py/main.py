@@ -1,11 +1,20 @@
 from MID_functions import fone, lofi, mute_mic, pause_music, play_music, rock, tv, unmute_mic
 from pynput import keyboard
 
+BASIC_KEYS_one = keyboard.KeyCode(vk=162)  # contrl left
+BASIC_KEYS_two = keyboard.KeyCode(vk=163)  # control right
 
 # The key combinations to look for
 COMBINATIONS = {
-    # shift + a (see below how to get vks)
-    (keyboard.Key.shift, keyboard.KeyCode(vk=65)): lofi()
+
+    (BASIC_KEYS_one, BASIC_KEYS_two, keyboard.KeyCode(vk=49)): lofi,
+    (BASIC_KEYS_one, BASIC_KEYS_two, keyboard.KeyCode(vk=50)): rock,
+    (BASIC_KEYS_one, BASIC_KEYS_two, keyboard.KeyCode(vk=51)): mute_mic,
+    (BASIC_KEYS_one, BASIC_KEYS_two, keyboard.KeyCode(vk=52)): unmute_mic,
+    (BASIC_KEYS_one, BASIC_KEYS_two, keyboard.KeyCode(vk=53)): play_music,
+    (BASIC_KEYS_one, BASIC_KEYS_two, keyboard.KeyCode(vk=54)): pause_music,
+    (BASIC_KEYS_one, BASIC_KEYS_two, keyboard.KeyCode(vk=55)): fone,
+    (BASIC_KEYS_one, BASIC_KEYS_two, keyboard.KeyCode(vk=56)): tv,
 }
 
 # The currently pressed keys (initially empty)
@@ -34,7 +43,7 @@ def on_press(key):
         # And check if all keys are pressed
         if is_combination_pressed(combination):
             # If they are all pressed, call your function
-            COMBINATIONS[combination]
+            COMBINATIONS[combination]()
             break  # Don't allow execute to be called more than once per key press
 
 
