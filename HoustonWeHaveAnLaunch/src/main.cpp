@@ -36,7 +36,8 @@ void setup()
   pinMode(setAudioOut, INPUT);
   prev_micMuted = digitalRead(muteAudio);
   Serial.begin(9600);
-  Serial.println("Gire o encoder....");
+
+  Consumer.begin();
 }
 
 void loop()
@@ -47,6 +48,7 @@ void loop()
   if (audioMuted != 1)
   {
     Serial.println("Muda estado do volume geral");
+    Consumer.write(MEDIA_VOLUME_MUTE);
     while (digitalRead(muteAudio) == 0)
       delay(10);
   }
@@ -122,11 +124,12 @@ void loop()
     { //aumenta o volume
       Serial.print(newPos);
       Serial.println(" MAIS");
+      Consumer.write(MEDIA_VOL_DOWN);
     }
     if (pos < newPos)
     { //diminui o volume
       Serial.print(newPos);
-      Serial.println(" MENOS");
+      Consumer.write(MEDIA_VOL_UP);
     }
     pos = newPos;
   }
