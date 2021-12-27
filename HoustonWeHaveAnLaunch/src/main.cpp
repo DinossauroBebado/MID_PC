@@ -1,6 +1,7 @@
 
 
 #include <RotaryEncoder.h>
+#include <HID-Project.h>
 #include <Arduino.h>
 //Pinos de ligacao do encoder
 #define A 6
@@ -94,6 +95,7 @@ void loop()
     prev_lofi = 0;
     delay(10);
   }
+
   // choose audio OUTPUT----------------------
   audioFone = digitalRead(setAudioOut);
   if (audioFone == 1 && prev_audioFone == 0)
