@@ -28,7 +28,7 @@ def pause():
 
 def set_rock():
     "set the more energing playlist"
-    sp.volume(100, device_id)
+    sp.volume(80, device_id)
     sp.start_playback(device_id=device_id,
                       context_uri=rock)
 

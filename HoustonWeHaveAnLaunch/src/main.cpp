@@ -71,12 +71,10 @@ void loop()
   micMuted = digitalRead(muteMic);
   if (micMuted == 0 && prev_micMuted == 1)
   { //mute mic--------------------
-    Keyboard.press(KEY_LEFT_CTRL);
-    Keyboard.press(KEY_RIGHT_CTRL);
+    Keyboard.press(KEY_LEFT_ALT);
     Keyboard.press('4');
     delay(100);
     Keyboard.releaseAll();
-
 #ifdef DEBUG
     Serial.println("Microfone desmutado");
 #endif
@@ -88,8 +86,7 @@ void loop()
 
   if (micMuted == 1 && prev_micMuted == 0)
   { //unmute m--------------------
-    Keyboard.press(KEY_LEFT_CTRL);
-    Keyboard.press(KEY_RIGHT_CTRL);
+    Keyboard.press(KEY_LEFT_ALT);
     Keyboard.press('3');
     delay(100);
     Keyboard.releaseAll();
@@ -107,8 +104,7 @@ void loop()
   musicPlaying = digitalRead(playMusic);
   if (musicPlaying == 1 && prev_musicPlaying == 0)
   { // play spotify playlist----------------
-    Keyboard.press(KEY_LEFT_CTRL);
-    Keyboard.press(KEY_RIGHT_CTRL);
+    Keyboard.press(KEY_LEFT_ALT);
     Keyboard.press('5');
     delay(100);
     Keyboard.releaseAll();
@@ -122,8 +118,7 @@ void loop()
   }
   if (musicPlaying == 0 && prev_musicPlaying == 1)
   { //pause spotify playlist----------------
-    Keyboard.press(KEY_LEFT_CTRL);
-    Keyboard.press(KEY_RIGHT_CTRL);
+    Keyboard.press(KEY_LEFT_ALT);
     Keyboard.press('6');
     delay(100);
     Keyboard.releaseAll();
@@ -140,8 +135,7 @@ void loop()
   lofi = digitalRead(setPlaylist);
   if (lofi == 1 && prev_lofi == 0)
   { // choose lofi playlist-----------------
-    Keyboard.press(KEY_LEFT_CTRL);
-    Keyboard.press(KEY_RIGHT_CTRL);
+    Keyboard.press(KEY_LEFT_ALT);
     Keyboard.press('1');
     delay(100);
     Keyboard.releaseAll();
@@ -156,8 +150,7 @@ void loop()
   }
   if (lofi == 0 && prev_lofi == 1)
   { // choose rock  playlist-----------------
-    Keyboard.press(KEY_LEFT_CTRL);
-    Keyboard.press(KEY_RIGHT_CTRL);
+    Keyboard.press(KEY_LEFT_ALT);
     Keyboard.press('2');
     delay(100);
     Keyboard.releaseAll();
@@ -175,8 +168,7 @@ void loop()
   audioFone = digitalRead(setAudioOut);
   if (audioFone == 1 && prev_audioFone == 0)
   { // choose fone output -----------------
-    Keyboard.press(KEY_LEFT_CTRL);
-    Keyboard.press(KEY_RIGHT_CTRL);
+    Keyboard.press(KEY_LEFT_ALT);
     Keyboard.press('7');
     delay(100);
     Keyboard.releaseAll();
@@ -191,8 +183,7 @@ void loop()
   }
   if (audioFone == 0 && prev_audioFone == 1)
   { // choose fone output -----------------
-    Keyboard.press(KEY_LEFT_CTRL);
-    Keyboard.press(KEY_RIGHT_CTRL);
+    Keyboard.press(KEY_LEFT_ALT);
     Keyboard.press('8');
     delay(100);
     Keyboard.releaseAll();

@@ -1,20 +1,20 @@
 from MID_functions import fone, lofi, mute_mic, pause_music, play_music, rock, tv, unmute_mic
 from pynput import keyboard
 
-BASIC_KEYS_one = keyboard.KeyCode(vk=162)  # contrl left
-BASIC_KEYS_two = keyboard.KeyCode(vk=163)  # control right
+BASIC_KEYS_one = keyboard.KeyCode(vk=164)  # alt right
+
 
 # The key combinations to look for
 COMBINATIONS = {
 
-    (BASIC_KEYS_one, BASIC_KEYS_two, keyboard.KeyCode(vk=49)): lofi,
-    (BASIC_KEYS_one, BASIC_KEYS_two, keyboard.KeyCode(vk=50)): rock,
-    (BASIC_KEYS_one, BASIC_KEYS_two, keyboard.KeyCode(vk=51)): mute_mic,
-    (BASIC_KEYS_one, BASIC_KEYS_two, keyboard.KeyCode(vk=52)): unmute_mic,
-    (BASIC_KEYS_one, BASIC_KEYS_two, keyboard.KeyCode(vk=53)): play_music,
-    (BASIC_KEYS_one, BASIC_KEYS_two, keyboard.KeyCode(vk=54)): pause_music,
-    (BASIC_KEYS_one, BASIC_KEYS_two, keyboard.KeyCode(vk=55)): fone,
-    (BASIC_KEYS_one, BASIC_KEYS_two, keyboard.KeyCode(vk=56)): tv,
+    (BASIC_KEYS_one, keyboard.KeyCode(vk=49)): lofi,
+    (BASIC_KEYS_one, keyboard.KeyCode(vk=50)): rock,
+    (BASIC_KEYS_one, keyboard.KeyCode(vk=51)): mute_mic,
+    (BASIC_KEYS_one, keyboard.KeyCode(vk=52)): unmute_mic,
+    (BASIC_KEYS_one, keyboard.KeyCode(vk=53)): play_music,
+    (BASIC_KEYS_one, keyboard.KeyCode(vk=54)): pause_music,
+    (BASIC_KEYS_one, keyboard.KeyCode(vk=55)): fone,
+    (BASIC_KEYS_one, keyboard.KeyCode(vk=56)): tv,
 }
 
 # The currently pressed keys (initially empty)
