@@ -19,7 +19,7 @@
 #define setAudioOut 16
 // Comment out next line to prevent slow response when
 // not actively debugging via serial port monitor
-#define DEBUG
+//#define DEBUG
 
 RotaryEncoder encoder(A, B);
 
@@ -71,8 +71,8 @@ void loop()
   micMuted = digitalRead(muteMic);
   if (micMuted == 0 && prev_micMuted == 1)
   { //mute mic--------------------
-    Keyboard.press(KEY_LEFT_ALT);
-    Keyboard.press('4');
+    Keyboard.press(KEY_F15);
+
     delay(100);
     Keyboard.releaseAll();
 #ifdef DEBUG
@@ -86,8 +86,8 @@ void loop()
 
   if (micMuted == 1 && prev_micMuted == 0)
   { //unmute m--------------------
-    Keyboard.press(KEY_LEFT_ALT);
-    Keyboard.press('3');
+    Keyboard.press(KEY_F16);
+
     delay(100);
     Keyboard.releaseAll();
 
@@ -104,8 +104,8 @@ void loop()
   musicPlaying = digitalRead(playMusic);
   if (musicPlaying == 1 && prev_musicPlaying == 0)
   { // play spotify playlist----------------
-    Keyboard.press(KEY_LEFT_ALT);
-    Keyboard.press('5');
+    Keyboard.press(KEY_F17);
+
     delay(100);
     Keyboard.releaseAll();
 
@@ -118,8 +118,8 @@ void loop()
   }
   if (musicPlaying == 0 && prev_musicPlaying == 1)
   { //pause spotify playlist----------------
-    Keyboard.press(KEY_LEFT_ALT);
-    Keyboard.press('6');
+    Keyboard.press(KEY_F18);
+
     delay(100);
     Keyboard.releaseAll();
 
@@ -135,8 +135,8 @@ void loop()
   lofi = digitalRead(setPlaylist);
   if (lofi == 1 && prev_lofi == 0)
   { // choose lofi playlist-----------------
-    Keyboard.press(KEY_LEFT_ALT);
-    Keyboard.press('1');
+    Keyboard.press(KEY_F13);
+
     delay(100);
     Keyboard.releaseAll();
 
@@ -150,8 +150,8 @@ void loop()
   }
   if (lofi == 0 && prev_lofi == 1)
   { // choose rock  playlist-----------------
-    Keyboard.press(KEY_LEFT_ALT);
-    Keyboard.press('2');
+    Keyboard.press(KEY_F14);
+
     delay(100);
     Keyboard.releaseAll();
 
@@ -168,8 +168,8 @@ void loop()
   audioFone = digitalRead(setAudioOut);
   if (audioFone == 1 && prev_audioFone == 0)
   { // choose fone output -----------------
-    Keyboard.press(KEY_LEFT_ALT);
-    Keyboard.press('7');
+    Keyboard.press(KEY_F19);
+
     delay(100);
     Keyboard.releaseAll();
 
@@ -183,8 +183,8 @@ void loop()
   }
   if (audioFone == 0 && prev_audioFone == 1)
   { // choose fone output -----------------
-    Keyboard.press(KEY_LEFT_ALT);
-    Keyboard.press('8');
+    Keyboard.press(KEY_F20);
+
     delay(100);
     Keyboard.releaseAll();
 
@@ -204,7 +204,7 @@ void loop()
   //Se a posicao foi alterada, mostra o valor
   if (pos != newPos)
   {
-    if (pos > newPos)
+    if (pos < newPos)
     { //aumenta o volume
 #ifdef DEBUG
       Serial.print(newPos);
@@ -213,7 +213,7 @@ void loop()
 
       Consumer.write(MEDIA_VOL_DOWN);
     }
-    if (pos < newPos)
+    if (pos > newPos)
     { //diminui o volume
 #ifdef DEBUG
       Serial.print(newPos);
