@@ -23,4 +23,3 @@ def on_press(key):
 with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
     # Join the listener thread to the current thread so we don't exit before it stops
     listener.join()
-f

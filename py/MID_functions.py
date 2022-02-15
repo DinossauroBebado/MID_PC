@@ -1,25 +1,23 @@
 from spotify import pause, play, set_lofi, set_rock
 import win32api
 import win32gui
-from win10toast import ToastNotifier
+
 
 WM_APPCOMMAND = 0x319
 APPCOMMAND_MICROPHONE_VOLUME_MUTE = 0x180000
-
-toaster = ToastNotifier()
 
 
 def lofi():
     """ My function to execute when a combination is pressed """
     print("lofi plays")
-    #toaster.show_toast("LOFI", " ")
+
     set_lofi()
 
 
 def rock():
     """ My function to execute when a combination is pressed """
     print("rock plays")
-    #toaster.show_toast("ROCK", " ")
+
     set_rock()
 
 
