@@ -2,10 +2,10 @@ from spotipy.oauth2 import SpotifyOAuth
 import spotipy
 import keys
 from keys import device_id
+import config
 
-rock = "spotify:playlist:2jPPpyAZIed1hr0yOivRww"
-lofi = "spotify:playlist:0vvXsWCC9xrXsKd4FyS8kM"
-
+rock = config.rock
+lofi = config.lofi
 
 scope = "user-read-playback-state,user-modify-playback-state"
 "Config credencials for the API"
