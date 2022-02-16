@@ -42,6 +42,11 @@ def on_release(key):
     ...
 
 
-with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
-    # Join the listener thread to the current thread so we don't exit before it stops
-    listener.join()
+def main():
+    with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
+        # Join the listener thread to the current thread so we don't exit before it stops
+        listener.join()
+
+
+if __name__ == "__main__":
+    main()
