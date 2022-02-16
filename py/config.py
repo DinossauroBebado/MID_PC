@@ -10,9 +10,6 @@ def read_config():
     return lofi, rock
 
 
-lofi, rock = read_config()
-
-
 def write_config(lofi_cont, rock_cont):
     config = {
         "spotify": {

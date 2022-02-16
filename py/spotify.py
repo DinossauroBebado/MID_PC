@@ -4,8 +4,6 @@ import keys
 from keys import device_id
 import config
 
-rock = config.rock
-lofi = config.lofi
 
 scope = "user-read-playback-state,user-modify-playback-state"
 "Config credencials for the API"
@@ -29,6 +27,8 @@ def pause():
 def set_rock():
     "set the more energing playlist"
     sp.volume(80, device_id)
+    _, rock = config.read_config()
+    print(rock)
     sp.start_playback(device_id=device_id,
                       context_uri=rock)
 
@@ -36,5 +36,6 @@ def set_rock():
 def set_lofi():
     "set the more focus playlist"
     sp.volume(50, device_id)
+    lofi, _ = config.read_config()
     sp.start_playback(device_id=device_id,
                       context_uri=lofi)
